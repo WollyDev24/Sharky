@@ -7,9 +7,11 @@ intents.members = True
 status = discord.Status.idle
 activity = discord.Activity(type=discord.ActivityType.watching, name="itself being coded")
 
+from config import server
+
 bot = discord.Bot(
     intents=intents, 
-    debug_guilds=[1400527951329759412],
+    debug_guilds=[server],
     status=status,
     activity=activity
 )  # Optional: Replace the debug_guild value with your server id or remove it to make it work on every server
@@ -25,4 +27,5 @@ if __name__ == "__main__":
             bot.load_extension(f"cogs.{filename[:-3]}")
 
 from config import token
+
 bot.run(token)
