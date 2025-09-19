@@ -7,18 +7,22 @@ class commands(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @slash_command(description="Change the status of the bot (testing purposes)")
-    async def changestatus(
+    @slash_command(description="Change the status of the bot")
+    async def activity(
             self, ctx, 
-            type: Option(str, "Type of activity", choices=["streaming", "watching", "Online"]),
+            type: Option(str, "Type of activity", choices=["streaming", "watching", "playing", "Reset"]),
             name: Option(str, "Name of the activity")
     ): 
         if type == "watching":
             activity = discord.Activity(type=discord.ActivityType.watching, name=name)
-        if type == "Streaming":
+        if type == "streaming":
             activity = discord.Activity(type=discord.ActivityType.streaming, name=name, url="https://www.twitch.tv/wollywoll8844") # set to your twitch channel
+        if type == "playing":
+            activity = discord.Activity(type=discord.ActivityType.playing, name=name)
+        if type == "Reset":
+            activity = discord.Activity(type=discord.ActivityType.watching, name="YouShadeBot")
 
-        await self.bot.change_presence(activity=activity, status=status)
+        await self.bot.change_presence(activity=activity)
         await ctx.respond(f"Status changed to {type} {name}")
 
 def setup(bot):
