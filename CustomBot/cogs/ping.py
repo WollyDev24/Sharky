@@ -19,7 +19,12 @@ class Ping(commands.Cog):
         embed.add_field(
             name="Ping", 
             value=f"{ping} ms", 
-            inline=True
+            inline=False
+            )
+        embed.add_field(
+            name="Bot is running on", 
+            value="Github", 
+            inline=False
             )
 
         await ctx.respond(embed=embed)
