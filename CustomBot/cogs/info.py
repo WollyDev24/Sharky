@@ -17,7 +17,7 @@ class Info(commands.Cog):
 
         embed.add_field(
             name="Version", 
-            value="V1.0.0", 
+            value="V1.1.0", 
             inline=True
             )
         embed.add_field(
@@ -39,9 +39,6 @@ class Info(commands.Cog):
             name="Newest Update", 
             value=" - Updadet Info Command\n - /changestatus is now /activity\n - Ping Command added\n - Greet channel is now in config.py\n - More options for /activity", 
             inline=False
-            )
-        embed.set_footer(
-            text="You are running the Stable Version of YouShadeBot"
             )
 
         await ctx.respond(embed=embed)
