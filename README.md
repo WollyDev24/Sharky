@@ -1,4 +1,6 @@
-# YouShadeBot
+#YouShadeBot got a Rebranding and is now Sharky!
+
+# Sharky (also known as YouShadeBot)
 The Code of our Frickin Awesome Discord bot.
 feel free to steal our Code
 
