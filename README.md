@@ -1,6 +1,6 @@
 # YouShadeBot got a Rebranding and is now Sharky!
 
-# Sharky (also known as YouShadeBot)
+# Sharky
 The Code of our Frickin Awesome Discord bot.
 feel free to steal our Code
 
@@ -8,6 +8,8 @@ feel free to steal our Code
 - 🙍 Greet user via Command
 - 👋 Automatic Greet Message
 - ℹ️ Info Command
+- 🎮 Bot Activity Changer
+- ⌛ Ping Comamnd 
 
 ## 💾 Planned Features
 - 📣 Announcements
