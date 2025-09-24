@@ -16,10 +16,10 @@ feel free to steal our Code
 - 🤫 Whisper Messages
 - 📒 Notes 
 
-### 📌 How to Add the bot to your server 
+## 📌 How to Add the bot to your server 
 - Just click this link and select your server
 
-## 💿 How to make it in your own
+## 💿 How to make it on your own
 - Download the CustomBot folder
 - Go to https://discord.com/developers/applications and create a new application
 - Give it a name and Pfp
