@@ -4,6 +4,13 @@
 The Code of our Frickin Awesome Discord bot.
 feel free to steal our Code
 
+## Support and Server
+[![Join our Discord](https://img.shields.io/badge/Discord-Join%20Chat-5865F2?logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/bapB8zz7VY)
+[![Join Telegram](https://img.shields.io/badge/Telegram-Join%20Channel-26A5E4?logo=telegram&logoColor=white&style=for-the-badge)](https://t.me/YouShadeKWGT)
+
+
+
+
 ## 💻 Features Available
 - 🙍 Greet user via Command
 - 👋 Automatic Greet Message
