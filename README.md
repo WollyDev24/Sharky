@@ -28,7 +28,7 @@ feel free to steal our Code
 - 🤫 Whisper Messages
 - 📒 Notes 
 
-## 📌 How to Add the bot to your server 
+## 📌 Add the bot to your server
 [![Add Bot to Server](https://img.shields.io/badge/Add%20Bot-Invite-blue?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/oauth2/authorize?client_id=1410735946374053918&permissions=8&integration_type=0&scope=bot)
 
 
