@@ -1,4 +1,4 @@
-![Banner](https://github.com/WollyDev24/Sharky/blob/main/banner.png?raw=true)
+![Banner](https://github.com/WollyDev24/Sharky/blob/main/Sharky.png?raw=true)
 ### YouShadeBot got a Rebranding and is now Sharky!
 
 # Sharky
