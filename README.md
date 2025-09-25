@@ -30,6 +30,7 @@ feel free to steal our Code
 
 ## 📌 Add the bot to your server
 [![Add Bot to Server](https://img.shields.io/badge/Add%20Bot-Invite-blue?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/oauth2/authorize?client_id=1410735946374053918&permissions=8&integration_type=0&scope=bot)
+- Note that some things are restricted like the /activity command if you want to use these commands buil the bot yorselve from the tutorial below
 
 
 
