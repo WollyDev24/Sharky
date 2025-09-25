@@ -21,7 +21,8 @@ feel free to steal our Code
 - 👋 Automatic Greet Message
 - ℹ️ Info Command
 - 🎮 Bot Activity Changer
-- ⌛ Ping Comamnd 
+- ⌛ Ping Comamnd
+- 🛑 Moderate
 
 ## 💾 Planned Features
 - 📣 Announcements
