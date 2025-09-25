@@ -12,7 +12,7 @@ class Ping(commands.Cog):
         ping = round(self.bot.latency * 1000)
         embed = discord.Embed(
             title="Pong!",
-            description="This is YouShadesBot ping!",
+            description="This is Sharky's ping!",
             color=discord.Color.green()
         )
 
@@ -23,7 +23,7 @@ class Ping(commands.Cog):
             )
         embed.add_field(
             name="Bot is running on", 
-            value="Github", 
+            value="Wollys Laptop", 
             inline=False
             )
 
