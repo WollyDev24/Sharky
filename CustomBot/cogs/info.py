@@ -11,13 +11,13 @@ class Info(commands.Cog):
     async def info(self, ctx):
         embed = discord.Embed(
             title="Bot Information",
-            description="Infos About YouShadeBot",
+            description="Infos about Sharky",
             color=discord.Color.green()
         )
 
         embed.add_field(
             name="Version", 
-            value="V1.1.0", 
+            value="V1.2.0", 
             inline=True
             )
         embed.add_field(
@@ -32,14 +32,20 @@ class Info(commands.Cog):
             )
         embed.add_field(
             name="Github", 
-            value="[Github Repo](https://github.com/WollyDev24/YouShadeBot/)", 
+            value="[Github Repo](https://github.com/WollyDev24/Sharky/)", 
             inline=False
             )
         embed.add_field(
             name="Newest Update", 
-            value=" - Updadet Info Command\n - /changestatus is now /activity\n - Ping Command added\n - Greet channel is now in config.py\n - More options for /activity", 
+            value=" - /kick command\n - /activty can only be executed by the bot owner\n - Chnaged to the new Branding: Sharky", 
             inline=False
             )
+        embed.add_field(
+            name="Remove restrictions", 
+            value="if you want to remove the restrictions (e.g. /activity can only be executed by the bot owner) build the bot yourself from [GitHub](https://github.com/wollydev24/sharky)", 
+            inline=False
+            )
+
 
         await ctx.respond(embed=embed)
 
