@@ -11,7 +11,7 @@ feel free to steal our Code
 
 ## Support and Server
 [![Join our Discord](https://img.shields.io/badge/Discord-Join%20Chat-5865F2?logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/bapB8zz7VY)
-[![Join Telegram](https://img.shields.io/badge/Telegram-Join%20Channel-26A5E4?logo=telegram&logoColor=white&style=for-the-badge)](https://t.me/YouShadeKWGT)
+[![Join Telegram](https://img.shields.io/badge/Telegram-Join%20Channel-26A5E4?logo=telegram&logoColor=white&style=for-the-badge)](https://t.me/SharkyUpdates)
 
 
 
@@ -31,7 +31,7 @@ feel free to steal our Code
 
 ## 📌 Add the bot to your server
 [![Add Bot to Server](https://img.shields.io/badge/Add%20Bot-Invite-blue?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/oauth2/authorize?client_id=1410735946374053918&permissions=8&integration_type=0&scope=bot)
-- Note that some things are restricted like the /activity command if you want to use these commands built the bot yorselve from the tutorial below
+- Note that some things are restricted like the /activity command if you want to use these commands built the bot yourself from the tutorial below
 
 
 
@@ -43,5 +43,6 @@ feel free to steal our Code
 - Go to the config.py file and replace the token placeholder with your actual token
 - Replace the Server id with your own server (Recommended) or leave blank
 - Replace the Greet Channel id with your own
+- Replace the Owner id with your id
 - Invite the bot to your server
 - Run the main.py file
