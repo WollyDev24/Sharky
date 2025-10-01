@@ -33,16 +33,23 @@ feel free to steal our Code
 [![Add Bot to Server](https://img.shields.io/badge/Add%20Bot-Invite-blue?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/oauth2/authorize?client_id=1410735946374053918&permissions=8&integration_type=0&scope=bot)
 - Note that some things are restricted like the /activity command if you want to use these commands built the bot yourself from the tutorial below
 
+## 🚀 Setup Guide
 
+1️⃣ **Download**  
+Download the `CustomBot` folder.
 
-## 💿 How to make it on your own
-- Download the CustomBot folder
-- Go to https://discord.com/developers/applications and create a new application
-- Give it a name and Pfp
-- Go to the Bot section and click reset token, copy the token
-- Go to the config.py file and replace the token placeholder with your actual token
-- Replace the Server id with your own server (Recommended) or leave blank
-- Replace the Greet Channel id with your own
-- Replace the Owner id with your id
+2️⃣ **Create a Discord Application**  
+Go to the [Discord Developer Portal](https://discord.com/developers/applications) → Create a new application → Add a name + icon.
+
+3️⃣ **Insert your Bot Token**  
+- Open `config.py`  
+- Replace `YOUR_TOKEN_HERE` with your bot token
+
+4️⃣ **Set your Server IDs**  
+- `SERVER_ID` → your server ID  
+- `GREET_CHANNEL_ID` → the ID of your welcome channel  
+- `OWNER_ID` → your Discord ID  
+
+5️⃣ **Invite & Start the Bot**  
 - Invite the bot to your server
-- Run the main.py file
+- Run `main.py` → ✅ Done!
