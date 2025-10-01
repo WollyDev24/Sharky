@@ -13,9 +13,6 @@ feel free to steal our Code
 [![Join our Discord](https://img.shields.io/badge/Discord-Join%20Chat-5865F2?logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/bapB8zz7VY)
 [![Join Telegram](https://img.shields.io/badge/Telegram-Join%20Channel-26A5E4?logo=telegram&logoColor=white&style=for-the-badge)](https://t.me/SharkyUpdates)
 
-
-
-
 ## 💻 Features Available
 - 🙍 Greet user via Command
 - 👋 Automatic Greet Message
@@ -53,3 +50,8 @@ Go to the [Discord Developer Portal](https://discord.com/developers/applications
 5️⃣ **Invite & Start the Bot**  
 - Invite the bot to your server
 - Run `main.py` → ✅ Done!
+
+## Contribute to Development
+if you want to help me develop this bot you can:
+- Make Pull Requests here
+- Message me on the `Support Server` or `Telegram Channel`
