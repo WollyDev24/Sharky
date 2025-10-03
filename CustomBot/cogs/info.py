@@ -14,10 +14,14 @@ class Info(commands.Cog):
             description="Infos about Sharky",
             color=discord.Color.green()
         )
-
+        embed.add_field(
+            name="Website",
+            value="[Sharky Website](https://wollydev24.github.io/sharky.html)", 
+            inline=False
+        )
         embed.add_field(
             name="Version", 
-            value="V1.2.0", 
+            value="V1.4.0", 
             inline=True
             )
         embed.add_field(
@@ -37,7 +41,7 @@ class Info(commands.Cog):
             )
         embed.add_field(
             name="Newest Update", 
-            value=" - /kick command\n - /activty can only be executed by the bot owner\n - Chnaged to the new Branding: Sharky", 
+            value=" - Website is now Listed in /info\n - if no Owner ID is configured the Bot will still work\n - if no Greet Channel is Configured your bot will still work, just doesnt greet people\n - New Greet Message\n - Bot displays the number of servers it is in when starting and New style for Startup messages", 
             inline=False
             )
         embed.add_field(
