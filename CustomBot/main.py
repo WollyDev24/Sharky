@@ -13,17 +13,18 @@ from config import greet
 from config import token
 
 if token == "" or token is None:
-    raise ValueError("No token provided. Please set the token in config.py")
+    raise ValueError("- No token provided. Please set the token in config.py")
 else:
-    print("Token found.")
+    print("- Token found.")
 if owner == "" or owner is None:
-    raise ValueError("No owner ID provided. Please set the owner ID in config.py")
+    print("- No owner ID provided, anyone will be able to control your bot")
 else:
-    print("Owner ID found.")
+    print("- Owner ID Configured.")
 if greet == "" or greet is None:
-    raise ValueError("No greet channel ID provided. Please set the greet channel ID in config.py")
+    print("- No greet channel ID provided. Bot will not Greet new members.")
 else:
-    print("Greet channel ID found.")
+    print("Greet channel ID Configured.")
+print("- starting bot..")
 
 bot = discord.Bot(
     intents=intents, 
@@ -35,7 +36,8 @@ bot = discord.Bot(
 
 @bot.event
 async def on_ready():
-    print(f"{bot.user} is Online and Connected to Discord")
+    print(f"- {bot.user} is Online and Connected to Discord")
+    print(f"- Bot started in {len(bot.guilds)} server(s)")
 
 if __name__ == "__main__":
     for filename in os.listdir("cogs"):
