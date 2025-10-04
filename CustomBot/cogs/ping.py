@@ -8,6 +8,7 @@ class Ping(commands.Cog):
         self.bot = bot
 
     @slash_command()
+    @commands.cooldown(1, 5, commands.BucketType.user)
     async def ping(self, ctx):
         ping = round(self.bot.latency * 1000)
         embed = discord.Embed(
@@ -28,6 +29,13 @@ class Ping(commands.Cog):
             )
 
         await ctx.respond(embed=embed)
+
+    @commands.Cog.listener()
+    async def on_application_command_error(self, ctx, error):
+        if isinstance(error, commands.CommandOnCooldown):
+            seconds = ctx.command.get_cooldown_retry_after(ctx)
+
+            await ctx.respond(f"Hey i love that you want to see the ping but please wait {seconds:.2f} seconds.", ephemeral=True)
 
 
 def setup(bot):
