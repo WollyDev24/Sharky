@@ -44,5 +44,4 @@ if __name__ == "__main__":
         if filename.endswith(".py"):
             bot.load_extension(f"cogs.{filename[:-3]}")
 
-from config import token
 bot.run(token)
