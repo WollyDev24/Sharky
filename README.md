@@ -20,6 +20,7 @@ feel free to steal our Code
 - 🎮 Bot Activity Changer
 - ⌛ Ping Comamnd
 - 🛑 Moderate
+- 🎮 Play Rock-Paper-Scissor
 
 ## 💾 Planned Features
 - 📣 Announcements
