@@ -33,27 +33,30 @@ feel free to steal our Code
 ## 🚀 Setup Guide
 
 1️⃣ **Clone**  
-```terminal
+```
 git clone https://github.com/wollydev24/sharky
 ```
-
 
 
 2️⃣ **Create a Discord Application**  
 Go to the [Discord Developer Portal](https://discord.com/developers/applications) → Create a new application → Add a name + icon.
 
 3️⃣ **Insert your Bot Token**  
-- Open `config.py`  
-- Replace `YOUR_TOKEN_HERE` with your bot token
+- Rename `config_example.py` to `config.py`  
+- Replace `token` with your bot token
 
 4️⃣ **Set your Server IDs**  
-- `SERVER_ID` → your server ID  
-- `GREET_CHANNEL_ID` → the ID of your welcome channel  
-- `OWNER_ID` → your Discord ID  
+- `server` → your server ID  
+- `greet` → the ID of your welcome channel  
+- `owner` → your Discord ID  
 
 5️⃣ **Invite & Start the Bot**  
 - Invite the bot to your server
-- Run `main.py` → ✅ Done!
+```bash
+py main.py
+```
+
+
 
 ## Contribute to Development
 if you want to help me develop this bot you can:
