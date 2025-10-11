@@ -13,8 +13,8 @@ class ActivityCog(commands.Cog):
     async def activity(
         self, 
         ctx, 
-        type: Option(str, "Type of activity", choices=["streaming", "watching", "playing", "listening", "Reset"]), 
-        name: Option(str, "Name of the activity") 
+        type: Option(str, "Type of activity", choices=["streaming", "watching", "playing", "listening", "Reset"]),  # type: ignore
+        name: Option(str, "Name of the activity")  # type: ignore
     ): 
         if ctx.author.id == owner: 
             embed = discord.Embed(

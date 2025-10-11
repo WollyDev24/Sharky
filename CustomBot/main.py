@@ -1,5 +1,6 @@
 import discord
 import os
+import asyncio
 
 intents = discord.Intents.default()
 intents.members = True
@@ -25,6 +26,8 @@ if greet == "" or greet is None:
 else:
     print("[INFO] Greet channel ID Configured.")
 print("[INFO] starting bot..")
+
+asyncio.set_event_loop(asyncio.new_event_loop())
 
 bot = discord.Bot(
     intents=intents, 
