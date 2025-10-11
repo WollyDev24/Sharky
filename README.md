@@ -50,9 +50,10 @@ Go to the [Discord Developer Portal](https://discord.com/developers/applications
 - `greet` → the ID of your welcome channel  
 - `owner` → your Discord ID  
 
-5️⃣ **Invite & Start the Bot**  
+5️⃣ **Invite the Bot**  
 - Invite the bot to your server
-- Run
+
+6️⃣ **Start the Bot**
 ```bash
 py main.py
 ```
