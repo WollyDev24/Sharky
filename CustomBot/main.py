@@ -14,18 +14,19 @@ from config import greet
 from config import token
 
 if token == "" or token is None:
-    raise ValueError("[FATAL] No token provided. Please set the token in config.py")
+    print("\033[31m[FATAL]\033[0m No token provided. Please set the token in config.py")
+    raise ValueError("No token provided")
 else:
-    print("[INFO] Token found.")
+    print("\033[32m[INFO]\033[0m Token found.")
 if owner == "" or owner is None:
-    print("[NOTICE] No owner ID provided, anyone will be able to control your bot")
+    print("\033[35m[NOTICE]\033[0m No owner ID provided, anyone will be able to control your bot")
 else:
-    print("[INFO] Owner ID Configured.")
+    print("\033[32m[INFO]\033[0m Owner ID Configured.")
 if greet == "" or greet is None:
-    print("[NOTICE] No greet channel ID provided. Bot will not Greet new members.")
+    print("\033[35m[NOTICE]\033[0m No greet channel ID provided. Bot will not Greet new members.")
 else:
-    print("[INFO] Greet channel ID Configured.")
-print("[INFO] starting bot..")
+    print("\033[32m[INFO]\033[0m Greet channel ID Configured.")
+print("\033[32m[INFO]\033[0m starting bot..")
 
 asyncio.set_event_loop(asyncio.new_event_loop())
 
@@ -39,8 +40,8 @@ bot = discord.Bot(
 
 @bot.event
 async def on_ready():
-    print(f"[INFO] {bot.user} is Online and Connected to Discord")
-    print(f"[INFO] Bot is curently running in {len(bot.guilds)} server(s)")
+    print(f"\033[32m[INFO]\033[0m {bot.user} is Online and Connected to Discord")
+    print(f"\033[32m[INFO]\033[0m Bot is curently running in {len(bot.guilds)} server(s)")
 
 if __name__ == "__main__":
     for filename in os.listdir("cogs"):

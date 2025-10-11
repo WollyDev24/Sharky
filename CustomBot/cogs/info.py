@@ -21,7 +21,7 @@ class Info(commands.Cog):
         )
         embed.add_field(
             name="Version", 
-            value="V1.5.1", 
+            value="V1.6.1", 
             inline=True
             )
         embed.add_field(
@@ -41,7 +41,7 @@ class Info(commands.Cog):
             )
         embed.add_field(
             name="Newest Update", 
-            value=" - Added cooldown to ``/ping``\n - Updated how infos look at startup in the termianl\n - ``/greet`` is now ``/hello``\n - Added ``/help`` command", 
+            value=" - You can now play Rock Paper Scissor! use ``/rps``\n - Updated how infos look at startup in the termianl and added Colors to it", 
             inline=False
             )
         embed.add_field(
