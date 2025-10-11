@@ -58,9 +58,8 @@ Go to the [Discord Developer Portal](https://discord.com/developers/applications
 py main.py
 ```
 
-
-
 ## Contribute to Development
-if you want to help me develop this bot you can:
-- Make Pull Requests here
-- Message me on the `Support Server` or `Telegram Channel`
+if you want to help me or Support my Work
+- Make Pull Requests
+- Star the Repo
+- Join the `Support Server` or `Telegram Channel`
