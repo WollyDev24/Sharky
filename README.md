@@ -32,8 +32,12 @@ feel free to steal our Code
 
 ## 🚀 Setup Guide
 
-1️⃣ **Download**  
-Download the `CustomBot` folder.
+1️⃣ **Clone**  
+```terminal
+git clone https://github.com/wollydev24/sharky
+```
+
+
 
 2️⃣ **Create a Discord Application**  
 Go to the [Discord Developer Portal](https://discord.com/developers/applications) → Create a new application → Add a name + icon.
