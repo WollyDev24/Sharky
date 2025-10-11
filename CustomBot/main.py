@@ -17,7 +17,7 @@ if token == "" or token is None:
 else:
     print("[INFO] Token found.")
 if owner == "" or owner is None:
-    print("[NOTICE ]No owner ID provided, anyone will be able to control your bot")
+    print("[NOTICE] No owner ID provided, anyone will be able to control your bot")
 else:
     print("[INFO] Owner ID Configured.")
 if greet == "" or greet is None:
@@ -37,7 +37,7 @@ bot = discord.Bot(
 @bot.event
 async def on_ready():
     print(f"[INFO] {bot.user} is Online and Connected to Discord")
-    print(f"[INFO] Bot started in {len(bot.guilds)} server(s)")
+    print(f"[INFO] Bot is curently running in {len(bot.guilds)} server(s)")
 
 if __name__ == "__main__":
     for filename in os.listdir("cogs"):
