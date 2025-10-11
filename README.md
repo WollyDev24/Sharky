@@ -52,6 +52,7 @@ Go to the [Discord Developer Portal](https://discord.com/developers/applications
 
 5️⃣ **Invite & Start the Bot**  
 - Invite the bot to your server
+- Run
 ```bash
 py main.py
 ```
