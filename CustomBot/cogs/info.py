@@ -21,7 +21,7 @@ class Info(commands.Cog):
         )
         embed.add_field(
             name="Version", 
-            value="V2.6.1", 
+            value="V2.6.0", 
             inline=True
             )
         embed.add_field(
@@ -41,7 +41,7 @@ class Info(commands.Cog):
             )
         embed.add_field(
             name="Newest Update", 
-            value=" - You can now play Rock Paper Scissor! use ``/rps``\n - Updated how infos look at startup in the termianl and added Colors to it", 
+            value=" - Bot now checks for Updates at Startup\n - Check for Updates via the ``/update`` command", 
             inline=False
             )
         embed.add_field(
