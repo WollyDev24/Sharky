@@ -21,7 +21,7 @@ class Info(commands.Cog):
         )
         embed.add_field(
             name="Version", 
-            value="V2.6.0", 
+            value="V2.6.1", 
             inline=True
             )
         embed.add_field(
@@ -56,4 +56,5 @@ class Info(commands.Cog):
 def setup(bot):
 
     bot.add_cog(Info(bot))
+
 
