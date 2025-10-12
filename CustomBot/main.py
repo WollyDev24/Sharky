@@ -48,4 +48,13 @@ if __name__ == "__main__":
         if filename.endswith(".py"):
             bot.load_extension(f"cogs.{filename[:-3]}")
 
+import subprocess
+
+print("🔍 Checking for updates...")
+subprocess.run(["git", "fetch"])
+status = subprocess.run(["git", "status", "-uno"], capture_output=True, text=True)
+if "Your branch is behind" in status.stdout:
+    print("⚙️ Update found! Pulling changes...")
+    subprocess.run(["git", "pull"])
+
 bot.run(token)
