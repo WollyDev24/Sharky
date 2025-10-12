@@ -50,11 +50,14 @@ if __name__ == "__main__":
 
 import subprocess
 
-print("🔍 Checking for updates...")
+print("\033[34m[UPDATE]\033[0m Checking for updates...")
 subprocess.run(["git", "fetch"])
 status = subprocess.run(["git", "status", "-uno"], capture_output=True, text=True)
 if "Your branch is behind" in status.stdout:
-    print("⚙️ Update found! Pulling changes...")
+    print("\033[34m[UPDATE]\033[0m Update found! Pulling changes...")
     subprocess.run(["git", "pull"])
+    print("\033[34m[UPDATE]\033[0m Bot updated! Run main.py again to apply update.")
+    exit(0)
+print("\033[34m[UPDATE]\033[0m Bot is up to date!")
 
 bot.run(token)
