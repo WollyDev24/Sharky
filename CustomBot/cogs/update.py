@@ -8,6 +8,7 @@ class Update(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    # 🔹 Checkt, ob Updates vorhanden sind
     def check_for_updates(self):
         subprocess.run(["git", "fetch"], check=True)
         status = subprocess.run(
@@ -15,12 +16,19 @@ class Update(commands.Cog):
         )
         return "Your branch is behind" in status.stdout
 
+    # 🔹 Führt das Update aus
     def pull_updates(self):
         subprocess.run(["git", "pull"], check=True)
 
+    # 🔹 Restartet den Bot sauber
+    def restart_bot(self):
+        python = sys.executable
+        os.execv(python, [python] + sys.argv)
+
+    # 🔹 Slash Command
     @slash_command(description="Check for and apply bot updates")
     async def update(self, ctx):
-        # First Respond (ephemeral)
+        # Ephemere Antwort (nur für den Nutzer sichtbar)
         msg = await ctx.respond("🔍 Checking for updates...", ephemeral=True)
         message = await msg.original_response()
 
@@ -29,7 +37,7 @@ class Update(commands.Cog):
                 await message.edit(content="⚙️ Update found! Pulling latest changes...")
                 self.pull_updates()
                 await message.edit(content="✅ Update complete! Restarting bot...")
-                os.execv(sys.executable, ["python"] + sys.argv)
+                self.restart_bot()
             else:
                 await message.edit(content="✅ No updates found. Bot is up to date!")
         except Exception as e:

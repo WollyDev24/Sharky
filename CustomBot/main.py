@@ -1,33 +1,56 @@
 import discord
 import os
+import sys
 import asyncio
+import subprocess
 
+# === 🟦 Auto-Update before Startup ===
+def auto_update():
+    print("\033[34m[UPDATE]\033[0m Checking for updates...")
+    try:
+        subprocess.run(["git", "fetch"], check=True)
+        status = subprocess.run(["git", "status", "-uno"], capture_output=True, text=True)
+
+        if "Your branch is behind" in status.stdout:
+            print("\033[34m[UPDATE]\033[0m Update found! Pulling changes...")
+            subprocess.run(["git", "pull"], check=True)
+            print("\033[34m[UPDATE]\033[0m Bot updated! Restarting to apply changes...")
+            os.execv(sys.executable, ["python"] + sys.argv)
+        else:
+            print("\033[34m[UPDATE]\033[0m Bot is up to date!")
+    except Exception as e:
+        print(f"\033[31m[UPDATE ERROR]\033[0m {e}")
+
+# Call the auto-update function
+auto_update()
+
+# === 🟩 Imports & Base config ===
 intents = discord.Intents.default()
 intents.members = True
 
 status = discord.Status.online
-activity = discord.Activity(type=discord.ActivityType.watching, name="for hunry sharks")
+activity = discord.Activity(type=discord.ActivityType.watching, name="for hungry sharks")
 
-from config import server
-from config import owner
-from config import greet
-from config import token
+from config import server, owner, greet, token
 
-if token == "" or token is None:
+# === 🟨 Config Checks ===
+if not token:
     print("\033[31m[FATAL]\033[0m No token provided. Please set the token in config.py")
     raise ValueError("No token provided")
 else:
     print("\033[32m[INFO]\033[0m Token found.")
-if owner == "" or owner is None:
+if not owner:
     print("\033[35m[NOTICE]\033[0m No owner ID provided, anyone will be able to control your bot")
 else:
     print("\033[32m[INFO]\033[0m Owner ID Configured.")
-if greet == "" or greet is None:
-    print("\033[35m[NOTICE]\033[0m No greet channel ID provided. Bot will not Greet new members.")
+if not greet:
+    print("\033[35m[NOTICE]\033[0m No greet channel ID provided. Bot will not greet new members.")
 else:
     print("\033[32m[INFO]\033[0m Greet channel ID Configured.")
-print("\033[32m[INFO]\033[0m starting bot..")
 
+print("\033[32m[INFO]\033[0m Starting bot...")
+
+# === 🟪 Discord Bot Setup ===
 asyncio.set_event_loop(asyncio.new_event_loop())
 
 bot = discord.Bot(
@@ -37,27 +60,17 @@ bot = discord.Bot(
     activity=activity
 )
 
-
+# === 🟧 Events ===
 @bot.event
 async def on_ready():
     print(f"\033[32m[INFO]\033[0m {bot.user} is Online and Connected to Discord")
-    print(f"\033[32m[INFO]\033[0m Bot is curently running in {len(bot.guilds)} server(s)")
+    print(f"\033[32m[INFO]\033[0m Bot is currently running in {len(bot.guilds)} server(s)")
 
+# === 🟦 Load cogs ===
 if __name__ == "__main__":
     for filename in os.listdir("cogs"):
         if filename.endswith(".py"):
             bot.load_extension(f"cogs.{filename[:-3]}")
 
-import subprocess
-
-print("\033[34m[UPDATE]\033[0m Checking for updates...")
-subprocess.run(["git", "fetch"])
-status = subprocess.run(["git", "status", "-uno"], capture_output=True, text=True)
-if "Your branch is behind" in status.stdout:
-    print("\033[34m[UPDATE]\033[0m Update found! Pulling changes...")
-    subprocess.run(["git", "pull"])
-    print("\033[34m[UPDATE]\033[0m Bot updated! Run main.py again to apply update.")
-    exit(0)
-print("\033[34m[UPDATE]\033[0m Bot is up to date!")
-
+# === 🟩 Start Bot ===
 bot.run(token)
