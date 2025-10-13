@@ -41,7 +41,7 @@ class Info(commands.Cog):
             )
         embed.add_field(
             name="Newest Update", 
-            value=" - Bot now checks for Updates at Startup\n - Check for Updates via the ``/update`` command", 
+            value=" - Update check got better and now forces one if it doesnt succed at first\n - Bot now restarts automatically after an update", 
             inline=False
             )
         embed.add_field(
