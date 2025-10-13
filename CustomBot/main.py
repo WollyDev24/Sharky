@@ -4,7 +4,7 @@ import sys
 import asyncio
 import subprocess
 
-# === 🟦 Auto-Update before Startup ===
+# === 🟦 Auto-Update at Startup ===
 def auto_update():
     print("\033[34m[UPDATE]\033[0m Checking for updates...")
     try:
@@ -13,18 +13,26 @@ def auto_update():
 
         if "Your branch is behind" in status.stdout:
             print("\033[34m[UPDATE]\033[0m Update found! Pulling changes...")
-            subprocess.run(["git", "pull"], check=True)
-            print("\033[34m[UPDATE]\033[0m Bot updated! Restarting to apply changes...")
+            try:
+                subprocess.run(["git", "pull"], check=True)
+            except subprocess.CalledProcessError:
+                print("\033[33m[UPDATE WARN]\033[0m Local changes detected! Forcing update...")
+                subprocess.run(["git", "reset", "--hard", "HEAD"], check=True)
+                subprocess.run(["git", "clean", "-fd"], check=True)
+                subprocess.run(["git", "pull"], check=True)
+            
+            print("\033[34m[UPDATE]\033[0m Update applied successfully. Restarting bot...")
             os.execv(sys.executable, ["python"] + sys.argv)
         else:
             print("\033[34m[UPDATE]\033[0m Bot is up to date!")
+
     except Exception as e:
         print(f"\033[31m[UPDATE ERROR]\033[0m {e}")
 
-# Call the auto-update function
+# Run Update check
 auto_update()
 
-# === 🟩 Imports & Base config ===
+# === 🟩 Discord Setup ===
 intents = discord.Intents.default()
 intents.members = True
 
@@ -50,7 +58,7 @@ else:
 
 print("\033[32m[INFO]\033[0m Starting bot...")
 
-# === 🟪 Discord Bot Setup ===
+# === 🟪 Iniate bot ===
 asyncio.set_event_loop(asyncio.new_event_loop())
 
 bot = discord.Bot(
@@ -77,5 +85,5 @@ if __name__ == "__main__":
             if filename.endswith(".py"):
                 bot.load_extension(f"cogs.{filename[:-3]}")
 
-# === 🟩 Start Bot ===
+# === 🟩 Start ===
 bot.run(token)
