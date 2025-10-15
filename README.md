@@ -6,8 +6,8 @@
 ### YouShadeBot got a Rebranding and is now Sharky!
 
 # Sharky
-The Code of our Frickin Awesome Discord bot.
-feel free to steal our Code
+Code for an cool in development Discord bot with a few cool features. 
+- This project is licensed under an GPL-3.0 License
 
 ## Support and Server
 [![Join our Discord](https://img.shields.io/badge/Discord-Join%20Chat-5865F2?logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/bapB8zz7VY)
