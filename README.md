@@ -21,6 +21,7 @@ feel free to steal our Code
 - ⌛ Ping Comamnd
 - 🛑 Moderate
 - 🎮 Play Rock-Paper-Scissor
+- 💻 Control your bot over terminal (eg. shutdown, see servers, reload cogs and more)
 
 ## 💾 Planned Features
 - 📣 Announcements
