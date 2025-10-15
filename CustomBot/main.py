@@ -5,8 +5,9 @@ import asyncio
 import subprocess
 import threading
 import random
+import time
 
-# === 🟦 Auto Update ===
+# =Auto Update System
 def auto_update():
     print("\033[34m[UPDATE]\033[0m Checking for updates...")
     try:
@@ -32,7 +33,6 @@ def auto_update():
 
 auto_update()
 
-# === 🟦 Discord Setup ===
 intents = discord.Intents.default()
 intents.members = True
 
@@ -41,17 +41,17 @@ activity = discord.Activity(type=discord.ActivityType.watching, name="for hungry
 
 from config import server, owner, greet, token
 
-if not token:
+if not token or token == "123456789010.ABCDEFGHIJK.KLMNOPQ.RSTUVWXYZ":
     print("\033[31m[FATAL]\033[0m No token provided. Please set the token in config.py")
     raise ValueError("No token provided")
 else:
     print("\033[32m[INFO]\033[0m Token found.")
-if not owner:
+if not owner or owner == "123456789":
     print("\033[35m[NOTICE]\033[0m No owner ID provided, anyone could access /auth.")
 else:
     print("\033[32m[INFO]\033[0m Owner ID configured.")
 
-if not greet:
+if not greet or greet == "123456789":
     print("\033[35m[NOTICE]\033[0m No greet channel ID provided.")
 else:
     print("\033[32m[INFO]\033[0m Greet channel ID configured.")
@@ -67,7 +67,7 @@ bot = discord.Bot(
     activity=activity
 )
 
-# === 🟩 Auth System ===
+# Auth Framework
 authenticated = False
 auth_code = str(random.randint(100000, 999999))
 
@@ -75,8 +75,9 @@ auth_code = str(random.randint(100000, 999999))
 async def on_ready():
     print(f"\033[32m[INFO]\033[0m {bot.user} is Online and Connected to Discord")
     print(f"\033[32m[INFO]\033[0m Running in {len(bot.guilds)} server(s)")
-    print(f"🔐 AUTH CODE: \033[36m{auth_code}\033[0m")
-    print("💡 Type /auth <code> in Discord (as owner) to unlock terminal control.")
+    time.sleep(0.5)
+    print(f"\033[33m[AUTH]\033[0m AUTH CODE: \033[36m{auth_code}\033[0m")
+    print("\033[33m[AUTH]\033[0m Type /auth <code> in Discord (as owner) to unlock terminal control.")
 
 @bot.slash_command(description="Authenticate terminal control (Owner only)")
 async def auth(ctx, code: str):
@@ -85,7 +86,6 @@ async def auth(ctx, code: str):
     result = ""
     
     try:
-        # Versuche Owner für DM zu laden
         owner_user = await bot.fetch_user(int(owner))
     except Exception:
         owner_user = None
@@ -95,14 +95,13 @@ async def auth(ctx, code: str):
         result = "❌ Unauthorized user tried to authenticate."
     elif code == auth_code:
         authenticated = True
-        await ctx.respond("✅ Terminal access granted! You may now use console commands.", ephemeral=True)
-        print(f"🔓 Terminal authenticated by {user}.")
+        await ctx.respond("✅ Terminal access granted! console commands can now be used.", ephemeral=True)
+        print(f"\033[33m[AUTH]\033[0m Terminal authenticated by {user}.")
         result = "✅ Auth successful."
     else:
         await ctx.respond("❌ Invalid code. Try again.", ephemeral=True)
         result = "❌ Wrong code entered."
 
-    # === 📩 DM-Benachrichtigung an den Owner ===
     if owner_user:
         try:
             embed = discord.Embed(
@@ -116,20 +115,19 @@ async def auth(ctx, code: str):
 
             await owner_user.send(embed=embed)
         except discord.Forbidden:
-            print("⚠️ Could not send DM to owner (DMs disabled).")
+            print("\033[31m[ERROR]\033[0m Could not send DM to owner (DMs disabled).")
         except Exception as e:
-            print(f"⚠️ Failed to send DM: {e}")
+            print(f"\033[31m[ERROR]\033[0m Failed to send DM: {e}")
 
-# === 🧠 Terminal Command System ===
+# Terminal Command Framework 2
 def terminal_commands():
     global authenticated
     while True:
         if not authenticated:
-            print("🔒 Terminal locked. Waiting for /auth command in Discord...")
-            # Block input until unlocked
+            print("\033[31m[AUTH]\033[0m Terminal locked. Generating code for /auth command...")
             while not authenticated:
                 asyncio.run(asyncio.sleep(2))
-            print("✅ Terminal unlocked! You can now control the bot.\n")
+            print("\033[33m[AUTH]\033[0m Terminal unlocked! You can now control the bot.\n")
 
         try:
             cmd = input(">> ").strip()
@@ -137,7 +135,7 @@ def terminal_commands():
                 continue
 
             if cmd in ["exit", "stop"]:
-                print("🟥 Stopping bot...")
+                print("\033[33m[INFO]\033[0m Stopping bot...")
                 asyncio.run_coroutine_threadsafe(bot.close(), bot.loop)
                 break
 
@@ -147,24 +145,24 @@ def terminal_commands():
                     if guild.text_channels:
                         channel = guild.text_channels[0]
                         asyncio.run_coroutine_threadsafe(channel.send(msg), bot.loop)
-                print(f"💬 Sent message: {msg}")
+                print(f"\033[33m[TERMNIAL]\033[0m Sent message: {msg}")
 
             elif cmd.startswith("reload "):
                 name = cmd.split(" ", 1)[1]
                 try:
                     bot.reload_extension(f"cogs.{name}")
-                    print(f"🔄 Reloaded cog: {name}")
+                    print(f"\033[32m[COGS]\033[0m Reloaded cog: {name}")
                 except Exception as e:
-                    print(f"❌ Failed to reload cog: {e}")
+                    print(f"\033[31m[ERROR]\033[0m Failed to reload cog: {e}")
 
             elif cmd == "servers":
-                print("🌍 Connected servers:")
+                print("\033[33m[AUTH]\033[0m Connected servers:")
                 for guild in bot.guilds:
                     print(f" - {guild.name} ({guild.id})")
 
             elif cmd == "lock":
                 authenticated = False
-                print("🔒 Terminal locked again.")
+                print("\033[33m[AUTH]\033[0m Terminal locked.")
 
             elif cmd == "help":
                 print("\nAvailable commands:")
@@ -176,22 +174,19 @@ def terminal_commands():
                 print("  stop / exit    - Stop the bot\n")
 
             else:
-                print("❓ Unknown command. Type 'help' for available commands.")
+                print("\033[31m[AUTH]\033[0m Unknown command. Type 'help' for available commands.")
 
         except KeyboardInterrupt:
-            print("\n🟥 Shutting down...")
+            print("\n\033[33m[TERMINAL]\033[0m Shutting down...")
             asyncio.run_coroutine_threadsafe(bot.close(), bot.loop)
             break
 
-# === 🧵 Start terminal command thread ===
 threading.Thread(target=terminal_commands, daemon=True).start()
 
-# === 🟢 Load Cogs ===
 if __name__ == "__main__":
     cogs_path = "cogs" if os.path.exists("cogs") else "CustomBot/cogs"
     for filename in os.listdir(cogs_path):
         if filename.endswith(".py"):
             bot.load_extension(f"cogs.{filename[:-3]}")
 
-# === 🚀 Run Bot ===
 bot.run(token)
