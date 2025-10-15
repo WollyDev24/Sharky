@@ -47,7 +47,7 @@ Go to the [Discord Developer Portal](https://discord.com/developers/applications
 - Rename `config_example.py` to `config.py`  
 - Replace `token` with your bot token
 
-4️⃣ **Set your Server IDs**  
+4️⃣ **Set all IDs**  
 - `server` → your server ID  
 - `greet` → the ID of your welcome channel  
 - `owner` → your Discord ID  
