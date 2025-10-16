@@ -41,7 +41,7 @@ class Info(commands.Cog):
             )
         embed.add_field(
             name="Newest Update", 
-            value=" - Added terminal Control with auth system\n - Updated update.py", 
+            value=" - Added terminal Control with auth system\n - Updated update.py\n - Changed how the reload command in the terminal works\n - Bugfixes", 
             inline=False
             )
         embed.add_field(
