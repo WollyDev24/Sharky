@@ -147,11 +147,15 @@ def terminal_commands():
                         asyncio.run_coroutine_threadsafe(channel.send(msg), bot.loop)
                 print(f"\033[33m[TERMNIAL]\033[0m Sent message: {msg}")
 
-            elif cmd.startswith("reload "):
-                name = cmd.split(" ", 1)[1]
+            elif cmd == "reload":
+                if __name__ == "__main__":
+                    cogs_path = "cogs" if os.path.exists("cogs") else "CustomBot/cogs"
+                    for filename in os.listdir(cogs_path):
+                        if filename.endswith(".py"):
+                            bot.reload_extension(f"cogs.{filename[:-3]}")
+                print(f"\033[32m[COGS]\033[0m Reloaded config.")
                 try:
-                    bot.reload_extension(f"cogs.{name}")
-                    print(f"\033[32m[COGS]\033[0m Reloaded cog: {name}")
+                    time.sleep(0.1)
                 except Exception as e:
                     print(f"\033[31m[ERROR]\033[0m Failed to reload cog: {e}")
 
