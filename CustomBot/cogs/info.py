@@ -21,7 +21,7 @@ class Info(commands.Cog):
         )
         embed.add_field(
             name="Version", 
-            value="V2.7.2", 
+            value="V2.7.1", 
             inline=True
             )
         embed.add_field(
@@ -41,7 +41,7 @@ class Info(commands.Cog):
             )
         embed.add_field(
             name="Newest Update", 
-            value=" - Update check got better and now forces one if it doesnt succed at first\n - Bot now restarts automatically after an update", 
+            value=" - Added terminal Control with auth system\n - Updated update.py", 
             inline=False
             )
         embed.add_field(

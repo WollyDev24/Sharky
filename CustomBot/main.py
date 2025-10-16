@@ -76,8 +76,8 @@ async def on_ready():
     print(f"\033[32m[INFO]\033[0m {bot.user} is Online and Connected to Discord")
     print(f"\033[32m[INFO]\033[0m Running in {len(bot.guilds)} server(s)")
     time.sleep(0.5)
-    print(f"\033[33m[AUTH]\033[0m AUTH CODE: \033[36m{auth_code}\033[0m")
-    print("\033[33m[AUTH]\033[0m Type /auth <code> in Discord (as owner) to unlock terminal control.")
+    print(f"\033[35m[AUTH]\033[0m AUTH CODE: \033[36m{auth_code}\033[0m")
+    print("\033[35m[AUTH]\033[0m Type /auth <code> in Discord (as owner) to unlock terminal control.")
 
 @bot.slash_command(description="Authenticate terminal control (Owner only)")
 async def auth(ctx, code: str):
@@ -95,7 +95,7 @@ async def auth(ctx, code: str):
         result = "❌ Unauthorized user tried to authenticate."
     elif code == auth_code:
         authenticated = True
-        await ctx.respond("✅ Terminal access granted! console commands can now be used.", ephemeral=True)
+        await ctx.respond("✅ Terminal access granted! Terminal commands can now be used.", ephemeral=True)
         print(f"\033[33m[AUTH]\033[0m Terminal authenticated by {user}.")
         result = "✅ Auth successful."
     else:
@@ -119,7 +119,7 @@ async def auth(ctx, code: str):
         except Exception as e:
             print(f"\033[31m[ERROR]\033[0m Failed to send DM: {e}")
 
-# Terminal Command Framework 2
+# Terminal Command Handler
 def terminal_commands():
     global authenticated
     while True:
@@ -174,7 +174,7 @@ def terminal_commands():
                 print("  stop / exit    - Stop the bot\n")
 
             else:
-                print("\033[31m[AUTH]\033[0m Unknown command. Type 'help' for available commands.")
+                print("\033[31m[TERMINAL]\033[0m Unknown command. Type 'help' for available commands.")
 
         except KeyboardInterrupt:
             print("\n\033[33m[TERMINAL]\033[0m Shutting down...")
