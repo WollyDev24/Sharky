@@ -8,7 +8,7 @@ class RPS(commands.Cog):
         self.bot = bot
 
     @slash_command(description="Play Rock Paper Scissors")
-    async def rps(self, ctx, choice: Option(str, "What do you choose?", choices=["rock", "paper", "scissor"])):
+    async def rps(self, ctx, choice: Option(str, "What do you choose?", choices=["rock", "paper", "scissor"])): # type: ignore
         bot_choice = random.choice(["rock", "paper", "scissor"])
 
         # Regeln
