@@ -2,3 +2,4 @@ CustomBot/config.py
 CustomBot/__pycache__/
 CustomBot/cogs/__pycache__
 push.bat
+CustomBot/cogs/welcome_channels.json
