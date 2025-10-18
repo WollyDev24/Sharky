@@ -68,16 +68,20 @@ bot = discord.Bot(
 )
 
 # Auth Framework
-authenticated = False
-auth_code = str(random.randint(100000, 999999))
+# 👉 Wenn hier True steht, wird keine Codegenerierung oder Sperre aktiviert
+authenticated = True  
+auth_code = str(random.randint(100000, 999999)) if not authenticated else None
 
 @bot.event
 async def on_ready():
     print(f"\033[32m[INFO]\033[0m {bot.user} is Online and Connected to Discord")
     print(f"\033[32m[INFO]\033[0m Running in {len(bot.guilds)} server(s)")
     time.sleep(0.5)
-    print(f"\033[35m[AUTH]\033[0m AUTH CODE: \033[36m{auth_code}\033[0m")
-    print("\033[35m[AUTH]\033[0m Type /auth <code> in Discord (as owner) to unlock terminal control.")
+    if not authenticated:
+        print(f"\033[35m[AUTH]\033[0m AUTH CODE: \033[36m{auth_code}\033[0m")
+        print("\033[35m[AUTH]\033[0m Type /auth <code> in Discord (as owner) to unlock terminal control.")
+    else:
+        print("\033[35m[AUTH]\033[0m Terminal is unlocked.")
 
 @bot.slash_command(description="Authenticate terminal control (Owner only)")
 async def auth(ctx, code: str):
@@ -93,6 +97,9 @@ async def auth(ctx, code: str):
     if str(user.id) != str(owner):
         await ctx.respond("🚫 You are not authorized to unlock terminal access.", ephemeral=True)
         result = "❌ Unauthorized user tried to authenticate."
+    elif authenticated:
+        await ctx.respond("✅ Terminal is already unlocked.", ephemeral=True)
+        result = "✅ Already authenticated."
     elif code == auth_code:
         authenticated = True
         await ctx.respond("✅ Terminal access granted! Terminal commands can now be used.", ephemeral=True)
@@ -145,7 +152,7 @@ def terminal_commands():
                     if guild.text_channels:
                         channel = guild.text_channels[0]
                         asyncio.run_coroutine_threadsafe(channel.send(msg), bot.loop)
-                print(f"\033[33m[TERMNIAL]\033[0m Sent message: {msg}")
+                print(f"\033[33m[TERMINAL]\033[0m Sent message: {msg}")
 
             elif cmd == "reload":
                 if __name__ == "__main__":
@@ -172,7 +179,7 @@ def terminal_commands():
                 print("\nAvailable commands:")
                 print("  help           - Show this message")
                 print("  say <text>     - Send a message in the first text channel of all servers")
-                print("  reload <cog>   - Reload a cog")
+                print("  reload         - Reload the bot config")
                 print("  servers        - List connected servers")
                 print("  lock           - Lock terminal access again")
                 print("  stop / exit    - Stop the bot\n")

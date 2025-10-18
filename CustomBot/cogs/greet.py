@@ -27,12 +27,12 @@ class Greet(commands.Cog):
     async def setwelcome(
         self,
         ctx,
-        channel: Option(discord.TextChannel, "Select the channel for welcome messages")
+        channel: Option(discord.TextChannel, "Select the channel for welcome messages") # type: ignore
     ):
         guild_id = str(ctx.guild.id)
         self.welcome_channels[guild_id] = channel.id
         self.save_channels()
-        await ctx.respond(f"✅ Welcome channel set to {channel.mention}")
+        await ctx.respond(f"✅ Welcome channel set to {channel.mention}", ephemeral=True)
 
     # Command: Test (optional)
     @slash_command(description="Say hello to yourself")
