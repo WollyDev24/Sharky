@@ -7,7 +7,7 @@ import threading
 import random
 import time
 
-# =Auto Update System
+# Update system
 def auto_update():
     print("\033[34m[UPDATE]\033[0m Checking for updates...")
     try:
@@ -23,7 +23,7 @@ def auto_update():
                 subprocess.run(["git", "reset", "--hard", "HEAD"], check=True)
                 subprocess.run(["git", "clean", "-fd"], check=True)
                 subprocess.run(["git", "pull"], check=True)
-            
+
             print("\033[34m[UPDATE]\033[0m Update applied successfully. Restarting bot...")
             os.execv(sys.executable, ["python"] + sys.argv)
         else:
@@ -50,7 +50,6 @@ if not owner or owner == "123456789":
     print("\033[35m[NOTICE]\033[0m No owner ID provided, anyone could access /auth.")
 else:
     print("\033[32m[INFO]\033[0m Owner ID configured.")
-
 if not greet or greet == "123456789":
     print("\033[35m[NOTICE]\033[0m No greet channel ID provided.")
 else:
@@ -61,15 +60,14 @@ print("\033[32m[INFO]\033[0m Starting bot...")
 asyncio.set_event_loop(asyncio.new_event_loop())
 
 bot = discord.Bot(
-    intents=intents, 
+    intents=intents,
     debug_guilds=[server],
     status=status,
     activity=activity
 )
 
 # Auth Framework
-# 👉 Wenn hier True steht, wird keine Codegenerierung oder Sperre aktiviert
-authenticated = True  
+authenticated = False
 auth_code = str(random.randint(100000, 999999)) if not authenticated else None
 
 @bot.event
@@ -81,14 +79,14 @@ async def on_ready():
         print(f"\033[35m[AUTH]\033[0m AUTH CODE: \033[36m{auth_code}\033[0m")
         print("\033[35m[AUTH]\033[0m Type /auth <code> in Discord (as owner) to unlock terminal control.")
     else:
-        print("\033[35m[AUTH]\033[0m Terminal is unlocked.")
+        print("\033[35m[AUTH]\033[0m Terminal is already unlocked (authenticated = True).")
 
 @bot.slash_command(description="Authenticate terminal control (Owner only)")
 async def auth(ctx, code: str):
     global authenticated
     user = ctx.author
     result = ""
-    
+
     try:
         owner_user = await bot.fetch_user(int(owner))
     except Exception:
@@ -119,7 +117,6 @@ async def auth(ctx, code: str):
             embed.add_field(name="Entered Code", value=code, inline=False)
             embed.add_field(name="Result", value=result, inline=False)
             embed.set_footer(text=f"Server: {ctx.guild.name if ctx.guild else 'Direct Message'}")
-
             await owner_user.send(embed=embed)
         except discord.Forbidden:
             print("\033[31m[ERROR]\033[0m Could not send DM to owner (DMs disabled).")
@@ -129,6 +126,7 @@ async def auth(ctx, code: str):
 # Terminal Command Handler
 def terminal_commands():
     global authenticated
+
     while True:
         if not authenticated:
             print("\033[31m[AUTH]\033[0m Terminal locked. Generating code for /auth command...")
@@ -146,28 +144,16 @@ def terminal_commands():
                 asyncio.run_coroutine_threadsafe(bot.close(), bot.loop)
                 break
 
-            elif cmd.startswith("say "):
-                msg = cmd.split(" ", 1)[1]
-                for guild in bot.guilds:
-                    if guild.text_channels:
-                        channel = guild.text_channels[0]
-                        asyncio.run_coroutine_threadsafe(channel.send(msg), bot.loop)
-                print(f"\033[33m[TERMINAL]\033[0m Sent message: {msg}")
-
             elif cmd == "reload":
-                if __name__ == "__main__":
-                    cogs_path = "cogs" if os.path.exists("cogs") else "CustomBot/cogs"
-                    for filename in os.listdir(cogs_path):
-                        if filename.endswith(".py"):
-                            bot.reload_extension(f"cogs.{filename[:-3]}")
+                cogs_path = "cogs" if os.path.exists("cogs") else "CustomBot/cogs"
+                for filename in os.listdir(cogs_path):
+                    if filename.endswith(".py"):
+                        bot.reload_extension(f"cogs.{filename[:-3]}")
                 print(f"\033[32m[COGS]\033[0m Reloaded config.")
-                try:
-                    time.sleep(0.1)
-                except Exception as e:
-                    print(f"\033[31m[ERROR]\033[0m Failed to reload cog: {e}")
+                time.sleep(0.1)
 
             elif cmd == "servers":
-                print("\033[33m[AUTH]\033[0m Connected servers:")
+                print("\033[33m[INFO]\033[0m Connected servers:")
                 for guild in bot.guilds:
                     print(f" - {guild.name} ({guild.id})")
 
@@ -176,21 +162,59 @@ def terminal_commands():
                 print("\033[33m[AUTH]\033[0m Terminal locked.")
 
             elif cmd == "help":
-                print("\nAvailable commands:")
-                print("  help           - Show this message")
-                print("  say <text>     - Send a message in the first text channel of all servers")
-                print("  reload         - Reload the bot config")
-                print("  servers        - List connected servers")
-                print("  lock           - Lock terminal access again")
-                print("  stop / exit    - Stop the bot\n")
+                print("""
+\033[36mAvailable Terminal Commands:\033[0m
+  help         → Show this message
+  say <msg>    → Send message (choose server & channel)
+  servers      → List connected servers
+  reload       → Reload bot cogs
+  lock         → Lock terminal again
+  exit / stop  → Stop the bot
+""")
+                
+            elif cmd.startswith("say "):
+                msg = cmd.split(" ", 1)[1]
+
+                print("\n\033[33m[TERMINAL]\033[0m Select a server:")
+                for i, guild in enumerate(bot.guilds, start=1):
+                    print(f"  {i}. {guild.name} ({guild.id})")
+
+                try:
+                    choice = int(input("\nServer number: "))
+                    guild = bot.guilds[choice - 1]
+                except (ValueError, IndexError):
+                    print("\033[31m[ERROR]\033[0m Invalid server number.")
+                    continue
+
+                text_channels = [ch for ch in guild.text_channels if ch.permissions_for(guild.me).send_messages]
+                if not text_channels:
+                    print("\033[31m[ERROR]\033[0m No writable text channels in this server.")
+                    continue
+
+                print("\n\033[33m[TERMINAL]\033[0m Select a channel:")
+                for i, ch in enumerate(text_channels, start=1):
+                    print(f"  {i}. #{ch.name}")
+
+                try:
+                    ch_choice = int(input("\nChannel number: "))
+                    channel = text_channels[ch_choice - 1]
+                except (ValueError, IndexError):
+                    print("\033[31m[ERROR]\033[0m Invalid channel number.")
+                    continue
+
+                asyncio.run_coroutine_threadsafe(channel.send(msg), bot.loop)
+                print(f"\033[32m[TERMINAL]\033[0m Sent message to {guild.name} → #{channel.name}: {msg}")
 
             else:
-                print("\033[31m[TERMINAL]\033[0m Unknown command. Type 'help' for available commands.")
+                print(f"\033[31m[ERROR]\033[0m Unknown command '{cmd}'. Type 'help' for options.")
 
         except KeyboardInterrupt:
             print("\n\033[33m[TERMINAL]\033[0m Shutting down...")
             asyncio.run_coroutine_threadsafe(bot.close(), bot.loop)
             break
+        except Exception as e:
+            print(f"\033[31m[ERROR]\033[0m {e}")
+
 
 threading.Thread(target=terminal_commands, daemon=True).start()
 
