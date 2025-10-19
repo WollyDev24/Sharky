@@ -37,7 +37,7 @@ intents = discord.Intents.default()
 intents.members = True
 
 status = discord.Status.online
-activity = discord.Activity(type=discord.ActivityType.watching, name="for hungry sharks")
+activity = discord.Activity(type=discord.ActivityType.watching, name="for hungry sharks :3")
 
 from config import server, owner, greet, token
 
