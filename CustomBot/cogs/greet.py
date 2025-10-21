@@ -55,7 +55,7 @@ class Greet(commands.Cog):
             title="🎉 Welcome!",
             description=(
                 f"Welcome to the server, {member.mention}!\n"
-                f"Be sure to check the rules and have fun! 😄"
+                f"Be sure to check the rules and have fun!"
             ),
             color=discord.Color.blue()
         )
