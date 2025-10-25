@@ -53,7 +53,7 @@ Go to the [Discord Developer Portal](https://discord.com/developers/applications
 - `owner` → your Discord ID  
 
 5️⃣ **Restrict bot to one server (Optional)**
-Change this line to include ``debug_guilds=server,``
+- Change this line to include ``debug_guilds=server,``
 
 ```python
 bot = discord.Bot(
