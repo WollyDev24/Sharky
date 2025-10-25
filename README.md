@@ -19,7 +19,7 @@ Code for an cool in development Discord bot with a few cool features.
 - ℹ️ Info Command
 - 🎮 Bot Activity Changer
 - ⌛ Ping Comamnd
-- 🛑 Moderate
+- 🛑 Moderate (only kick as of now)
 - 🎮 Play Rock-Paper-Scissor
 - 💻 Control your bot over terminal (eg. shutdown, see servers, reload cogs and more)
 
@@ -52,10 +52,30 @@ Go to the [Discord Developer Portal](https://discord.com/developers/applications
 - `greet` → the ID of your welcome channel  
 - `owner` → your Discord ID  
 
-5️⃣ **Invite the Bot**  
+5️⃣ **Restrict bot to one server (Optional)**
+Change
+
+``python
+bot = discord.Bot(
+    intents=intents,
+    status=status,
+    activity=activity
+)``
+
+to
+
+``python
+bot = discord.Bot(
+    intents=intents,
+    debug_guilds=server,
+    status=status,
+    activity=activity
+)
+
+6️⃣ **Invite the Bot**  
 - Invite the bot to your server
 
-6️⃣ **Start the Bot**
+7️⃣ **Start the Bot**
 ```bash
 py main.py
 ```
