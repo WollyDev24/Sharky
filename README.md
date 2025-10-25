@@ -55,22 +55,22 @@ Go to the [Discord Developer Portal](https://discord.com/developers/applications
 5️⃣ **Restrict bot to one server (Optional)**
 Change
 
-``python
+```python
 bot = discord.Bot(
     intents=intents,
     status=status,
     activity=activity
-)``
+)```
 
 to
 
-``python
+```python
 bot = discord.Bot(
     intents=intents,
     debug_guilds=server,
     status=status,
     activity=activity
-)
+)```
 
 6️⃣ **Invite the Bot**  
 - Invite the bot to your server
