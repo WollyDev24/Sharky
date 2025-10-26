@@ -61,7 +61,6 @@ asyncio.set_event_loop(asyncio.new_event_loop())
 
 bot = discord.Bot(
     intents=intents,
-    debug_guilds=[server],
     status=status,
     activity=activity
 )
