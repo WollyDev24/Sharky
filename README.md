@@ -1,5 +1,7 @@
 ![Banner](https://github.com/WollyDev24/Sharky/blob/main/resources/Sharky.png?raw=true)
 
+# - Development of this bot stopped, thx for almost nothing
+
 ![GitHub Repo stars](https://img.shields.io/github/stars/WollyDev24/Sharky?style=for-the-badge)
 ![Last Commit](https://img.shields.io/github/last-commit/WollyDev24/Sharky?style=for-the-badge)
 
